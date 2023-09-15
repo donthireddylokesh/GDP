@@ -10,9 +10,9 @@ frameHeight = 480
 # Setting the minimum area of the contour it is specific to the region
 minArea = 500
 # loading the pretrained engine for detecting the registration tag in the image
-plateCascade = cv2.CascadeClassifier("C:/Users/s555694/Desktop/Gdp/haarcascade_russian_plate_number.xml")
+plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
 # Emergency Vehicle detecting haarcascasde file
-emgCascade = cv2.CascadeClassifier("C:/Users/s555694/Desktop/Gdp/cascade.xml")
+emgCascade = cv2.CascadeClassifier("cascade.xml")
 
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
