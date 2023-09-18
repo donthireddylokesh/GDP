@@ -247,9 +247,7 @@ class Main:
             vehicle.move()
         pygame.display.update()
 
-
 # Thread 2
-
 # Placeholder for database integration
 def get_emergency_vehicle_data():
     # Implement code to retrieve data about emergency vehicles from the database
@@ -297,25 +295,6 @@ def set_signal_to_green(direction):
     # For simplicity, we'll use a placeholder variable for now
     print(f"Setting signal to green for emergency vehicle in {direction} direction")
 
-# ... (existing code for other functions)
 
-class Main:
-    # ... (existing code up to the Main class)
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                sys.exit()
-
-        update_traffic_signal()
-        revert_signal_to_normal()  # You need to implement this function for timeout
-
-        screen.blit(background, (0, 0))
-        for i in range(0, noOfSignals):
-            # ... (existing code for displaying signals)
-
-        # ... (existing code for displaying vehicles)
-
-        pygame.display.update()
 
 Main()
