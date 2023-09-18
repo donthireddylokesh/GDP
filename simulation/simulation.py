@@ -295,7 +295,7 @@ def set_signal_to_green(direction):
     # For simplicity, we'll use a placeholder variable for now
     print(f"Setting signal to green for emergency vehicle in {direction} direction")
 
- class Main:
+class Main:
     # ... (existing code up to the Main class)
 
     while True:
