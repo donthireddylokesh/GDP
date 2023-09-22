@@ -247,9 +247,7 @@ class Main:
             vehicle.move()
         pygame.display.update()
 
-
 # Thread 2
-
 # Placeholder for database integration
 def get_emergency_vehicle_data():
     # Implement code to retrieve data about emergency vehicles from the database
@@ -297,8 +295,6 @@ def set_signal_to_green(direction):
     # For simplicity, we'll use a placeholder variable for now
     print(f"Setting signal to green for emergency vehicle in {direction} direction")
 
-# ... (existing code for other functions)
-
 class Main:
     # ... (existing code up to the Main class)
 
@@ -308,14 +304,41 @@ class Main:
                 sys.exit()
 
         update_traffic_signal()
-        revert_signal_to_normal()  # You need to implement this function for timeout
+        revert_signal_to_normal() 
+        # Constants for signal states
+SIGNAL_RED = 0
+SIGNAL_YELLOW = 1
+SIGNAL_GREEN = 2
 
-        screen.blit(background, (0, 0))
-        for i in range(0, noOfSignals):
-            # ... (existing code for displaying signals)
+# Define the time duration (in seconds) for how long the signal remains in the emergency state
+EMERGENCY_SIGNAL_DURATION = 30  # Adjust this duration as needed
 
-        # ... (existing code for displaying vehicles)
+# Variable to keep track of the timer thread
+signal_timer_thread = None
+
+# Function to revert the signal to its normal state
+def revert_signal_to_normal():
+    global signal_timer_thread
+
+    # If a timer thread is already running, cancel it
+    if signal_timer_thread and signal_timer_thread.is_alive():
+        signal_timer_thread.cancel()
+
+    # Start a new timer thread to revert the signal to normal after the specified duration
+    signal_timer_thread = threading.Timer(EMERGENCY_SIGNAL_DURATION, set_signal_to_normal, args=[SIGNAL_RED])
+    signal_timer_thread.start()
+
+# Function to set the signal to a specific state (red, yellow, or green)
+def set_signal_to_normal(signal_state):
+    # Implement code to set the signal to the specified state (SIGNAL_RED in this case)
+    # You may also need to update any related variables or data structures
+    pass
+    screen.blit(background, (0, 0))
+    for i in range(0, noOfSignals):
 
         pygame.display.update()
+
+
+
 
 Main()
