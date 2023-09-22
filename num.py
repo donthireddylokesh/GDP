@@ -19,6 +19,7 @@ collection.insert_many(vehicle_data)
 
 query = {'vehicle_number': specific_vehicle_number}
 documents = collectionE.find(query)
+print(documents)
 if(documents.__sizeof__()!=0):
     print("Not an emergency vehicle")
 else:
