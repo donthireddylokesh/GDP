@@ -1,6 +1,8 @@
 import cv2
 import easyocr
 import  regex as re
+from spellchecker import SpellChecker
+
 
 
 # Frame Width
@@ -13,7 +15,7 @@ minArea = 500
 plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
 # Emergency Vehicle detecting haarcascasde file
 emgCascade = cv2.CascadeClassifier("cascade.xml")
-
+cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
 a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
@@ -72,8 +74,11 @@ while True:
             cleanString = re.sub('\W+', '', text_in)
             print(cleanString)
             # search in the data base.
-
-            # predit the word
+            specific_vehicle_number = cleanString
+            # predict the word
+            spell = SpellChecker()
+            guessWord = spell.correction(cleanString)
+            print(guessWord)
             cv2.waitKey(500)
             count += 1
 
@@ -89,5 +94,3 @@ while True:
         break
 
 
-    def remove(string):
-        return string.replace(" ", "")
