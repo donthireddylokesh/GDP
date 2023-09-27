@@ -20,16 +20,9 @@ vehicle_data = [
 collection.insert_many(vehicle_data)
 
 query = {'vehicle_number': specific_vehicle_number}
-<<<<<<< Updated upstream
 documents = collectionE.count_documents(query)
 print(documents)
 if(documents==0):
-=======
-
-documents = collectionE.find(query)
-
-if(documents.__sizeof__()==0):
->>>>>>> Stashed changes
     print("Not an emergency vehicle")
 else:
     print("activate emergency protocol")
