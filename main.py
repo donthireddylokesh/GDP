@@ -43,7 +43,7 @@ while True:
         if w*h > 90000:
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
             imgRoi1 = img[y:y + h, x:x + w]
-            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/emgimg" + str(count) + ".jpg", imgRoi1)
+            cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
             print("emg")
     for (x, y, w, h) in numberPlates:
         area = w*h
@@ -60,11 +60,11 @@ while True:
             #plate_gray = cv2.cvtColor(imgRoi, cv2.COLOR_BGR2GRAY)
             #(thresh, imgRoi) = cv2.threshold(plate_gray, 127, 255, cv2.THRESH_BINARY)
             cv2.imshow("ROI",imgRoi)
-            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/img" + str(count) + ".jpg", imgRoi)
+            cv2.imwrite("./img/img" + str(count) + ".jpg", imgRoi)
             # setting the language for the OCR
             reader = easyocr.Reader(['en'])
             # getting the ROI image and extracting the text init
-            output = reader.readtext("C:/Users/s555694/Desktop/IMAGES/img"+str(count)+".jpg")
+            output = reader.readtext("./img/img"+str(count)+".jpg")
             #print(output)
             # cleaning a string
             # checking whether the text is there or not in the ROI image
