@@ -18,9 +18,9 @@ emgCascade = cv2.CascadeClassifier("cascade.xml")
 cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
-a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
+#a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
 #a = "C:/Users\s555694\Desktop\Gdp/n/0000.jpg"
-cap =cv2.VideoCapture(a)
+cap =cv2.VideoCapture(0)
 # setting the frame width
 cap.set(3,frameWidth)
 # setting the frame height
