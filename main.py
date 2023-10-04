@@ -14,7 +14,7 @@ minArea = 500
 # loading the pretrained engine for detecting the registration tag in the image
 plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
 # Emergency Vehicle detecting haarcascasde file
-emgCascade = cv2.CascadeClassifier("cascade.xml")
+emgCascade = cv2.CascadeClassifier("cascade1.xml")
 cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
@@ -43,8 +43,9 @@ while True:
         if w*h > 90000:
             cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
             imgRoi1 = img[y:y + h, x:x + w]
-            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/emgimg" + str(count) + ".jpg", imgRoi1)
+            cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
             print("emg")
+            break;
     for (x, y, w, h) in numberPlates:
         area = w*h
         if area > minArea:
@@ -60,11 +61,11 @@ while True:
             #plate_gray = cv2.cvtColor(imgRoi, cv2.COLOR_BGR2GRAY)
             #(thresh, imgRoi) = cv2.threshold(plate_gray, 127, 255, cv2.THRESH_BINARY)
             cv2.imshow("ROI",imgRoi)
-            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/img" + str(count) + ".jpg", imgRoi)
+            cv2.imwrite("./img/img" + str(count) + ".jpg", imgRoi)
             # setting the language for the OCR
             reader = easyocr.Reader(['en'])
             # getting the ROI image and extracting the text init
-            output = reader.readtext("C:/Users/s555694/Desktop/IMAGES/img"+str(count)+".jpg")
+            output = reader.readtext("./img/img"+str(count)+".jpg")
             #print(output)
             # cleaning a string
             # checking whether the text is there or not in the ROI image
