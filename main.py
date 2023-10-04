@@ -14,13 +14,13 @@ minArea = 500
 # loading the pretrained engine for detecting the registration tag in the image
 plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
 # Emergency Vehicle detecting haarcascasde file
-emgCascade = cv2.CascadeClassifier("cascade.xml")
+emgCascade = cv2.CascadeClassifier("cascade1.xml")
 cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
-#a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
+a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
 #a = "C:/Users\s555694\Desktop\Gdp/n/0000.jpg"
-cap =cv2.VideoCapture(0)
+cap =cv2.VideoCapture(a)
 # setting the frame width
 cap.set(3,frameWidth)
 # setting the frame height
@@ -45,6 +45,7 @@ while True:
             imgRoi1 = img[y:y + h, x:x + w]
             cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
             print("emg")
+            break;
     for (x, y, w, h) in numberPlates:
         area = w*h
         if area > minArea:
