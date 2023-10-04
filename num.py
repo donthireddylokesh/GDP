@@ -2,8 +2,11 @@
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 from datetime import datetime
+
+
 import main
 specific_vehicle_number = main.cleanString
+
 
 uri = "mongodb+srv://dheerajkittu27:12345@cluster0.izcphcw.mongodb.net/?retryWrites=true&w=majority"
 client = MongoClient(uri, server_api=ServerApi('1'))
