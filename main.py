@@ -67,16 +67,17 @@ while True:
             #cv2.imshow("ROI1",plate_gray)
             #(thresh, v_R_Plate) = cv2.threshold(plate_gray, 95,150 , cv2.THRESH_BINARY)
             cv2.imshow("ROI",plate_gray)
-            cv2.imwrite("./img/img" + str(count) + ".jpg", plate_gray)
+            #cv2.imwrite("./img/img" + str(count) + ".jpg", plate_gray)
             # setting the language for the OCR
             reader = easyocr.Reader(['en'])
             # getting the ROI image and extracting the text init
-            output = reader.readtext("./img/img"+str(count)+".jpg")
+            output = reader.readtext(plate_gray)
             #print(output)
             # cleaning a string
             # checking whether the text is there or not in the ROI image
             if not (not output):
                 text_in = output[0][-2]
+                cv2.imwrite("./img/img" + str(count) + ".jpg", plate_gray)
             # Allow only alphanumaric in the text
             cleanString = re.sub('\W+', '', text_in)
             print(cleanString)
