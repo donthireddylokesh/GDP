@@ -19,8 +19,8 @@ emgCascade = cv2.CascadeClassifier("cascade1.xml")
 cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
-a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
-#a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
+#a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
+a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
 cap =cv2.VideoCapture(a)
 # setting the frame width
 cap.set(3,frameWidth)
@@ -83,18 +83,29 @@ while True:
             cleanString = re.sub('\W+', '', text_in)
             print(cleanString)
             # if (search in the data base).
-            inter = num.dataBase.regTag(cleanString)
+            if(num.dataBase.regTag(cleanString)):
+                interrupt = True
             # else (predict the word).
-            spell = SpellChecker()
-            guessWord = spell.correction(cleanString)
-            if guessWord != None:
-                guessWord = guessWord
-            else: guessWord = "none"
-            print(guessWord)  
-            for emg_Word in emg_words:
-                if(guessWord.__contains__(emg_Word.lower())):
-                    interrupt = True
-                    print("interrupt:",interrupt)
+            else:
+                spell = SpellChecker()
+                guessWord = spell.correction(cleanString)
+                if guessWord != None:
+                    guessWord = guessWord
+                else: guessWord = "none"
+                print(guessWord)
+                a=1 
+                for emg_Word in emg_words:
+
+                    if(guessWord.__contains__(emg_Word.lower())):
+                        interrupt = True
+                        print("interrupt:",interrupt)
+
+                        print(a)
+                        print(emg_words.__len__())
+                    a+=1
+                    if(a == emg_words.__len__()):
+                        print("data inserted")
+                        num.dataBase.insertData(cleanString)
             cv2.waitKey(500)
             count += 1
 
