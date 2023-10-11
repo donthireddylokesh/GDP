@@ -3,7 +3,7 @@ import easyocr
 import  regex as re
 from spellchecker import SpellChecker
 import numpy as np
-
+import num
 
 
 # Frame Width
@@ -30,6 +30,7 @@ cap.set(4,frameHeight)
 cap.set(10,150)
 interrupt = False
 count = 0
+#text in the detected area
 text_in = ""
 emg_words = ["Emergency","Ambulance","sheriff","police"]
 
@@ -82,7 +83,7 @@ while True:
             cleanString = re.sub('\W+', '', text_in)
             print(cleanString)
             # if (search in the data base).
-            specific_vehicle_number = cleanString
+            inter = num.dataBase.regTag(cleanString)
             # else (predict the word).
             spell = SpellChecker()
             guessWord = spell.correction(cleanString)
