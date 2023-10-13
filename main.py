@@ -19,8 +19,8 @@ emgCascade = cv2.CascadeClassifier("cascade1.xml")
 cleanString = ""
 ip = "https://192.168.1.148:8080/video"
 # initializing the video camera
-#a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
-a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
+a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
+#a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
 cap =cv2.VideoCapture(a)
 # setting the frame width
 cap.set(3,frameWidth)
@@ -33,7 +33,7 @@ count = 0
 #text in the detected area
 text_in = ""
 emg_words = ["Emergency","Ambulance","sheriff","police"]
-
+location = "junction_1"
 while True:
     # Reading the captured image
     success , img  = cap.read()
@@ -83,7 +83,7 @@ while True:
             cleanString = re.sub('\W+', '', text_in)
             print(cleanString)
             # if (search in the data base).
-            if(num.dataBase.regTag(cleanString)):
+            if(num.dataBase.regTag(cleanString,location)):
                 interrupt = True
             # else (predict the word).
             else:
@@ -93,19 +93,18 @@ while True:
                     guessWord = guessWord
                 else: guessWord = "none"
                 print(guessWord)
-                a=1 
+                e_Word_Not_Present = True
                 for emg_Word in emg_words:
-
                     if(guessWord.__contains__(emg_Word.lower())):
                         interrupt = True
                         print("interrupt:",interrupt)
-
-                        print(a)
-                        print(emg_words.__len__())
-                    a+=1
-                    if(a == emg_words.__len__()):
-                        print("data inserted")
-                        num.dataBase.insertData(cleanString)
+                        e_Word_Not_Present = False
+                print(e_Word_Not_Present)
+                print(guessWord.__eq__("none"))
+                if(guessWord.__eq__("none")  & e_Word_Not_Present == True):
+                    print("data inserted")
+                    num.dataBase.insertData(cleanString,location)
+                e_Word_Not_Present = True
             cv2.waitKey(500)
             count += 1
 
