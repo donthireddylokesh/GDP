@@ -93,9 +93,9 @@ signal4.ChangeColor("red")
 
 currentSignals = [signal1.color, signal2.color, signal3.color, signal4.color]
 
-
 def signal_loop():
-    interupt = False
+
+    global interupt
     if currentSignals.index("green") == 0:
         signal1.ChangeColor(currentSignals[0])
         time.sleep(8)
@@ -105,7 +105,7 @@ def signal_loop():
         signal2.ChangeColor("green")
         currentSignals[0] = "red"
         currentSignals[1] = "green"
-        interupt = False
+        #interupt = False
     # print("0")
     elif currentSignals.index("green") == 1:
         signal2.ChangeColor(currentSignals[1])
@@ -124,7 +124,7 @@ def signal_loop():
             currentSignals[2] = "green"
             # print("1")
             #signal_loop()
-            interupt = False
+            #interupt = False
     elif currentSignals.index("green") == 2:
         signal3.ChangeColor(currentSignals[2])
         time.sleep(8)
@@ -141,13 +141,13 @@ def signal_loop():
             currentSignals[2] = "red"
             currentSignals[3] = "green"
             #signal_loop()
-            interupt = False
+            #interupt = False
     elif currentSignals.index("green") == 3:
         signal4.ChangeColor(currentSignals[3])
         time.sleep(8)
         if currentSignals.index("green") != 3:
             #signal_loop()
-            interupt = False
+            #interupt = False
             signal4.ChangeColor("orange")
             time.sleep(2)
             signal4.ChangeColor("red")
@@ -159,10 +159,15 @@ def signal_loop():
             currentSignals[3] = "red"
             currentSignals[0] = "green"
             #signal_loop()
-            interupt = False
-    loop(0,interupt)
-
+            #interupt = False
+    #loop(3,main.imageProcessing())
+    interupt = main.imageProcessing()
+    if interupt == True:
+        loop(2, True)
+    else:
+        loop(3, False)
 def loop(singnalNum,interupt):
+        #loop(3,interupt)
         currentGreen = currentSignals.index("green")
         if interupt == True:
             for num in range(0,currentSignals.__len__()):
@@ -190,12 +195,13 @@ def loop(singnalNum,interupt):
                 signal4.ChangeColor("red")
             signal_loop()
             time.sleep(1)
-        else:
+        elif interupt==False:
             signal_loop()
         #loop(0,False)
 
-while True:
-    loop(3,main.imageProcessing())
-    print("signal interuption called")
+interupt = main.imageProcessing()
+print("here in simulation",interupt)
+loop(3,interupt)
+print("signal interuption called")
 
 #window.mainloop()

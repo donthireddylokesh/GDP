@@ -9,6 +9,7 @@ import threading
 import ray
 
 
+
 def imageProcessing():
     # Frame Width
     frameWidth = 640
@@ -25,14 +26,14 @@ def imageProcessing():
     # initializing the video camera
     a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
     #a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
-    cap = cv2.VideoCapture(a)
+    cap = cv2.VideoCapture(0)
     # setting the frame width
     cap.set(3, frameWidth)
     # setting the frame height
     cap.set(4, frameHeight)
     # setting the frame position
     cap.set(10, 150)
-    interrupt = False
+
     count = 0
     # text in the detected area
     text_in = ""
@@ -48,13 +49,13 @@ def imageProcessing():
         # Emergency vehicle detection
         emgVehicle = emgCascade.detectMultiScale(imgGray, 1.11, 2)
         # looping through all the contours that are detected by the haarcascade_russian_plate_number.xml
-        for (x, y, w, h) in emgVehicle:
-            if w * h > 90000:
-                # cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
-                imgRoi1 = img[y:y + h, x:x + w]
-                cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
-                print("emg")
-                break
+        # for (x, y, w, h) in emgVehicle:
+        #     if w * h > 90000:
+        #         # cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
+        #         imgRoi1 = img[y:y + h, x:x + w]
+        #         cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
+        #         print("emg")
+        #         break
         for (x, y, w, h) in numberPlates:
             area = w * h
             if area > minArea:
@@ -103,7 +104,7 @@ def imageProcessing():
                     for emg_Word in emg_words:
                         if (guessWord.__contains__(emg_Word.lower())):
                             interrupt = True
-                            print("interrupt:", interrupt)
+                            #print("interrupt:", interrupt)
                             e_Word_Not_Present = False
                     print(e_Word_Not_Present)
                     print(guessWord.__eq__("none"))
@@ -111,6 +112,7 @@ def imageProcessing():
                         print("data inserted")
                         num.dataBase.insertData(cleanString, location)
                         interrupt = False
+                        return interrupt
                     e_Word_Not_Present = True
                 cv2.waitKey(500)
                 count += 1
