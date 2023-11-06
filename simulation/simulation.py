@@ -14,7 +14,6 @@ noOfSignals = 4
 currentGreen = 0   # Indicates which signal is green currently
 nextGreen = (currentGreen+1)%noOfSignals    # Indicates which signal will turn green next
 currentYellow = 0   # Indicates whether yellow signal is on or off 
-
 speeds = {'car':2.25, 'bus':1.8, 'truck':1.8, 'bike':2.5}  # average speeds of vehicles
 
 # Coordinates of vehicles' start
@@ -302,7 +301,6 @@ class Main:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
-
         update_traffic_signal()
         revert_signal_to_normal() 
         # Constants for signal states
@@ -327,7 +325,6 @@ def revert_signal_to_normal():
     # Start a new timer thread to revert the signal to normal after the specified duration
     signal_timer_thread = threading.Timer(EMERGENCY_SIGNAL_DURATION, set_signal_to_normal, args=[SIGNAL_RED])
     signal_timer_thread.start()
-
 # Function to set the signal to a specific state (red, yellow, or green)
 def set_signal_to_normal(signal_state):
     # Implement code to set the signal to the specified state (SIGNAL_RED in this case)
@@ -335,7 +332,6 @@ def set_signal_to_normal(signal_state):
     pass
     screen.blit(background, (0, 0))
     for i in range(0, noOfSignals):
-
         pygame.display.update()
 
 
