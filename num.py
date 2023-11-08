@@ -82,16 +82,3 @@ class dataBase:
         # Print the last entered data time
         print('Last entered data time:', last_entered_data_time)
 
-        # # document = collection.count_documents(query1)
-        # # print(document)
-        # if(actual_send_Signal_time == dataBase.)
-        # print("time difference",delta.seconds)
-        # if delta.seconds < 2:
-        #     if delta.seconds >= 0:
-        #         print("entered into time zero")
-        #         print(counter)
-        #         return counter
-        # else:
-        #     print("non time zero")
-        #     print(counter)
-        #     return counter

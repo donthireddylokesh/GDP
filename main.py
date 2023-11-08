@@ -6,8 +6,6 @@ import numpy as np
 import num
 
 
-
-
 def imageProcessing():
     # Frame Width
     frameWidth = 640
@@ -130,12 +128,4 @@ def imageProcessing():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-
-# thread1 = threading.Thread(target=imageProcessing())
-# thread1.start()
-# thread2 = threading.Thread(target=simulation.simulation.signalInteruption.loop(0,interrupt))
-# thread2.start()
-# ray.init()
-# result = ray.get([imageProcessing.remote(),simulation.simulation.signalInteruption.remote()])
-# result
 imageProcessing()
