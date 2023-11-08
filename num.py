@@ -4,7 +4,6 @@ from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import datetime
 import num
-import pickle
 
 
 uri = "mongodb+srv://dheerajkittu27:12345@cluster0.izcphcw.mongodb.net/?retryWrites=true&w=majority"
@@ -98,3 +97,4 @@ class dataBase:
         #     print("non time zero")
         #     print(counter)
         #     return counter
+

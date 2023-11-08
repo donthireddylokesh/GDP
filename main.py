@@ -6,6 +6,18 @@ import numpy as np
 import num
 
 
+# Frame Width
+frameWidth = 640
+# Frame Height
+frameHeight = 480
+# Setting the minimum area of the contour it is specific to the region
+minArea = 500
+# loading the pretrained engine for detecting the registration tag in the image
+plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
+# Emergency Vehicle detecting haarcascasde file
+emgCascade = cv2.CascadeClassifier("cascade.xml")
+
+
 def imageProcessing():
     # Frame Width
     frameWidth = 640
@@ -113,24 +125,3 @@ def imageProcessing():
                     e_Word_Not_Present = True
                 cv2.waitKey(500)
                 count += 1
-
-        cv2.imshow("Result", img)
-        if cv2.waitKey(1) & 0xFF == ord('s'):
-            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/img" + str(count) + ".jpg", imgRoi)
-            cv2.rectangle(img, (0, 200), (640, 300), (0, 255, 0), cv2.FILLED)
-            cv2.putText(img, "Scan Saved", (15, 265), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 255), 2)
-            cv2.imshow("Result", img)
-            cv2.waitKey(500)
-            count += 1
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
-
-
-# thread1 = threading.Thread(target=imageProcessing())
-# thread1.start()
-# thread2 = threading.Thread(target=simulation.simulation.signalInteruption.loop(0,interrupt))
-# thread2.start()
-# ray.init()
-# result = ray.get([imageProcessing.remote(),simulation.simulation.signalInteruption.remote()])
-# result
-imageProcessing()
