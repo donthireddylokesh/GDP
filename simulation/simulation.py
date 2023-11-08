@@ -10,7 +10,6 @@ window = turtle.Screen()
 window.title("Traffic simulation")
 window.bgcolor("black")
 arrFromDatabase = []
-
 class StopLight:
     def __init__(self, x, y, i):
         self.pen = turtle.Turtle()
@@ -68,7 +67,6 @@ class StopLight:
         elif color == "green":
             self.greenLight.color("green")
             self.color = "green"
-
     def setTimmer(self):
         if self.color == "red":
             self.ChangeColor("green")
@@ -80,16 +78,15 @@ class StopLight:
             self.ChangeColor("orange")
             window.ontimer(self.setTimmer, 2000)
 
-
 signal1 = StopLight(0, 0, 1)
 signal1.ChangeColor("green")
 
 signal2 = StopLight(-100, 0, 2)
 signal2.ChangeColor("red")
 
+
 signal3 = StopLight(100, 0, 3)
 signal3.ChangeColor("red")
-
 signal4 = StopLight(200, 0, 4)
 signal4.ChangeColor("red")
 
@@ -223,3 +220,6 @@ loop(3,False)
 # if __name__ == "__main__":
 #     signal_loop()
 #window.mainloop()
+
+
+
