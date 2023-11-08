@@ -4,10 +4,6 @@ import regex as re
 from spellchecker import SpellChecker
 import numpy as np
 import num
-import threading
-
-import ray
-
 
 
 def imageProcessing():
@@ -25,15 +21,16 @@ def imageProcessing():
     ip = "https://192.168.1.148:8080/video"
     # initializing the video camera
     a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
-    #a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
-    cap = cv2.VideoCapture(0)
+    # a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
+    camera_port = 0
+    cap = cv2.VideoCapture(a)
     # setting the frame width
     cap.set(3, frameWidth)
     # setting the frame height
     cap.set(4, frameHeight)
     # setting the frame position
     cap.set(10, 150)
-
+    signal_No = 1
     count = 0
     # text in the detected area
     text_in = ""
@@ -49,13 +46,13 @@ def imageProcessing():
         # Emergency vehicle detection
         emgVehicle = emgCascade.detectMultiScale(imgGray, 1.11, 2)
         # looping through all the contours that are detected by the haarcascade_russian_plate_number.xml
-        # for (x, y, w, h) in emgVehicle:
-        #     if w * h > 90000:
-        #         # cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
-        #         imgRoi1 = img[y:y + h, x:x + w]
-        #         cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
-        #         print("emg")
-        #         break
+        for (x, y, w, h) in emgVehicle:
+            if w * h > 90000:
+                # cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 255), 2)
+                imgRoi1 = img[y:y + h, x:x + w]
+                cv2.imwrite("./img/emgimg" + str(count) + ".jpg", imgRoi1)
+                print("emg")
+                break
         for (x, y, w, h) in numberPlates:
             area = w * h
             if area > minArea:
@@ -84,35 +81,35 @@ def imageProcessing():
                 if not (not output):
                     text_in = output[0][-2]
                     cv2.imwrite("./img/img" + str(count) + ".jpg", plate_gray)
-                # Allow only alphanumaric in the text
-                cleanString = re.sub('\W+', '', text_in)
+                # Allow only alphanumeric in the text
+                cleanString = re.sub('\W+', '', text_in).upper()
                 print(cleanString)
-                # if (search in the data base).
-                if (num.dataBase.regTag(cleanString, location)):
+                # if (search in the database).
+                if (num.dataBase.regTag(cleanString, location, signal_No)):
                     interrupt = True
-                    return interrupt
+                    # return interrupt
                 # else (predict the word).
                 else:
                     spell = SpellChecker()
                     guessWord = spell.correction(cleanString)
-                    if guessWord != None:
+                    if guessWord is not None:
                         guessWord = guessWord
                     else:
                         guessWord = "none"
                     print(guessWord)
                     e_Word_Not_Present = True
                     for emg_Word in emg_words:
-                        if (guessWord.__contains__(emg_Word.lower())):
+                        if guessWord.__contains__(emg_Word.lower()):
                             interrupt = True
-                            #print("interrupt:", interrupt)
+                            # print("interrupt:", interrupt)
                             e_Word_Not_Present = False
                     print(e_Word_Not_Present)
                     print(guessWord.__eq__("none"))
-                    if (guessWord.__eq__("none") & e_Word_Not_Present == True):
+                    if guessWord.__eq__("none") & e_Word_Not_Present == True:
                         print("data inserted")
-                        num.dataBase.insertData(cleanString, location)
+                        num.dataBase.insertData(cleanString, location, signal_No, "Non_Emergency")
                         interrupt = False
-                        return interrupt
+                        # return interrupt
                     e_Word_Not_Present = True
                 cv2.waitKey(500)
                 count += 1
@@ -128,6 +125,7 @@ def imageProcessing():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
+
 # thread1 = threading.Thread(target=imageProcessing())
 # thread1.start()
 # thread2 = threading.Thread(target=simulation.simulation.signalInteruption.loop(0,interrupt))
@@ -135,3 +133,4 @@ def imageProcessing():
 # ray.init()
 # result = ray.get([imageProcessing.remote(),simulation.simulation.signalInteruption.remote()])
 # result
+imageProcessing()
