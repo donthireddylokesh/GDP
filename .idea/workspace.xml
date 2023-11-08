@@ -5,38 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="139c0fcd-65fc-49ea-8ca0-d9ab5dbfebe5" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/GDP.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/down/ambulance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/down/bike.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/down/bus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/down/car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/down/truck.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/intersection.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/left/ambulance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/left/bike.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/left/bus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/left/car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/left/truck.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/right/ambulance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/right/bike.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/right/bus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/right/car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/right/truck.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/signals/green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/signals/red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/signals/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/up/ambulance.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/up/bike.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/up/bus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/up/car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/simulation/Images/up/truck.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/num.py" beforeDir="false" afterPath="$PROJECT_DIR$/num.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
