@@ -1,15 +1,14 @@
 import datetime
 import turtle
 import time
-
-import queue
 import num
 
-queue = queue.Queue()
 window = turtle.Screen()
 window.title("Traffic simulation")
 window.bgcolor("black")
+
 arrFromDatabase = []
+
 class StopLight:
     def __init__(self, x, y, i):
         self.pen = turtle.Turtle()
@@ -67,6 +66,7 @@ class StopLight:
         elif color == "green":
             self.greenLight.color("green")
             self.color = "green"
+
     def setTimmer(self):
         if self.color == "red":
             self.ChangeColor("green")
@@ -78,19 +78,21 @@ class StopLight:
             self.ChangeColor("orange")
             window.ontimer(self.setTimmer, 2000)
 
+
 signal1 = StopLight(0, 0, 1)
 signal1.ChangeColor("green")
 
 signal2 = StopLight(-100, 0, 2)
 signal2.ChangeColor("red")
 
-
 signal3 = StopLight(100, 0, 3)
 signal3.ChangeColor("red")
+
 signal4 = StopLight(200, 0, 4)
 signal4.ChangeColor("red")
 
 currentSignals = [signal1.color, signal2.color, signal3.color, signal4.color]
+
 actual_send_Signal_time =  datetime.datetime(2023, 10, 27, 10, 16, 18)
 def signal_loop(lastDataTime = actual_send_Signal_time):
     print("lastdatatime",lastDataTime)
@@ -103,10 +105,13 @@ def signal_loop(lastDataTime = actual_send_Signal_time):
         signal2.ChangeColor("green")
         currentSignals[0] = "red"
         currentSignals[1] = "green"
+        #interupt = False
+    # print("0")
     elif currentSignals.index("green") == 1:
         signal2.ChangeColor(currentSignals[1])
         time.sleep(8)
         if currentSignals.index("green") != 1:
+            #signal_loop()
             signal2.ChangeColor("orange")
             time.sleep(2)
             signal2.ChangeColor("red")
@@ -117,10 +122,14 @@ def signal_loop(lastDataTime = actual_send_Signal_time):
             signal3.ChangeColor("green")
             currentSignals[1] = "red"
             currentSignals[2] = "green"
+            # print("1")
+            #signal_loop()
+            #interupt = False
     elif currentSignals.index("green") == 2:
         signal3.ChangeColor(currentSignals[2])
         time.sleep(8)
         if currentSignals.index("green") != 2:
+            #signal_loop()
             signal3.ChangeColor("orange")
             time.sleep(2)
             signal3.ChangeColor("red")
@@ -131,10 +140,14 @@ def signal_loop(lastDataTime = actual_send_Signal_time):
             signal4.ChangeColor("green")
             currentSignals[2] = "red"
             currentSignals[3] = "green"
+            #signal_loop()
+            #interupt = False
     elif currentSignals.index("green") == 3:
         signal4.ChangeColor(currentSignals[3])
         time.sleep(8)
         if currentSignals.index("green") != 3:
+            #signal_loop()
+            #interupt = False
             signal4.ChangeColor("orange")
             time.sleep(2)
             signal4.ChangeColor("red")
@@ -143,23 +156,10 @@ def signal_loop(lastDataTime = actual_send_Signal_time):
             time.sleep(2)
             signal4.ChangeColor("red")
             signal1.ChangeColor("green")
-            currentSignals[0] = "green"
             currentSignals[3] = "red"
-
-    # if len(arrFromDatabase) >= 1:
-    #     print("inside the arrfromm data 1")
-    #     if any(arrFromDatabase) == True:
-    #         arrFromDatabase.clear()
-    #         #arrFromDatabase.append(num.sendSignal())
-    #         loop(3,True)
-    #     else:
-    #         arrFromDatabase.clear()
-    #         #arrFromDatabase.append(num.sendSignal())
-    #         loop(3,False)
-    #
-    # else:
-    #     #arrFromDatabase.append(num.sendSignal())
-    #     loop(3, False)
+            currentSignals[0] = "green"
+            #signal_loop()
+            #interupt = False
     if num.dataBase.sendSignal(lastDataTime)[1]:
         print("lastdatatime in if ",lastDataTime)
         t  = num.dataBase.sendSignal(lastDataTime)[0]
@@ -212,6 +212,7 @@ def loop(singnalNum,interupt):
                 signal4.ChangeColor("red")
             signal_loop(actual_send_Signal_time)
         elif interupt==False:
+        #loop(0,False)
             signal_loop(actual_send_Signal_time)
 
 
@@ -220,6 +221,3 @@ loop(3,False)
 # if __name__ == "__main__":
 #     signal_loop()
 #window.mainloop()
-
-
-

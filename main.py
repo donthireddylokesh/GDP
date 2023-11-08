@@ -6,16 +6,6 @@ import numpy as np
 import num
 
 
-# Frame Width
-frameWidth = 640
-# Frame Height
-frameHeight = 480
-# Setting the minimum area of the contour it is specific to the region
-minArea = 500
-# loading the pretrained engine for detecting the registration tag in the image
-plateCascade = cv2.CascadeClassifier("haarcascade_russian_plate_number.xml")
-# Emergency Vehicle detecting haarcascasde file
-emgCascade = cv2.CascadeClassifier("cascade.xml")
 
 
 def imageProcessing():
@@ -33,7 +23,7 @@ def imageProcessing():
     ip = "https://192.168.1.148:8080/video"
     # initializing the video camera
     a = "C:/Users\s555694\Desktop\Gdp\p/4771.jpg"
-    # a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
+    #a = "C:/Users\s555694\Desktop\Gdp/n/non2.jpg"
     camera_port = 0
     cap = cv2.VideoCapture(a)
     # setting the frame width
@@ -42,6 +32,7 @@ def imageProcessing():
     cap.set(4, frameHeight)
     # setting the frame position
     cap.set(10, 150)
+
     signal_No = 1
     count = 0
     # text in the detected area
@@ -113,15 +104,38 @@ def imageProcessing():
                     for emg_Word in emg_words:
                         if guessWord.__contains__(emg_Word.lower()):
                             interrupt = True
+                            #print("interrupt:", interrupt)
                             # print("interrupt:", interrupt)
                             e_Word_Not_Present = False
                     print(e_Word_Not_Present)
                     print(guessWord.__eq__("none"))
                     if guessWord.__eq__("none") & e_Word_Not_Present == True:
                         print("data inserted")
+                        num.dataBase.insertData(cleanString, location)
                         num.dataBase.insertData(cleanString, location, signal_No, "Non_Emergency")
                         interrupt = False
                         # return interrupt
                     e_Word_Not_Present = True
                 cv2.waitKey(500)
                 count += 1
+
+        cv2.imshow("Result", img)
+        if cv2.waitKey(1) & 0xFF == ord('s'):
+            cv2.imwrite("C:/Users/s555694/Desktop/IMAGES/img" + str(count) + ".jpg", imgRoi)
+            cv2.rectangle(img, (0, 200), (640, 300), (0, 255, 0), cv2.FILLED)
+            cv2.putText(img, "Scan Saved", (15, 265), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 255), 2)
+            cv2.imshow("Result", img)
+            cv2.waitKey(500)
+            count += 1
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
+
+# thread1 = threading.Thread(target=imageProcessing())
+# thread1.start()
+# thread2 = threading.Thread(target=simulation.simulation.signalInteruption.loop(0,interrupt))
+# thread2.start()
+# ray.init()
+# result = ray.get([imageProcessing.remote(),simulation.simulation.signalInteruption.remote()])
+# result
+imageProcessing()

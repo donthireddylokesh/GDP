@@ -1,5 +1,4 @@
 import time
-
 from pymongo import MongoClient
 from pymongo.server_api import ServerApi
 import datetime
@@ -32,7 +31,6 @@ class dataBase:
         db = client['vehicle_log']
         collection = db['junction1']
         now = datetime.datetime.now()
-        # current_time = now.strftime("%H:%M:%S")
         vehicle_data = [{'Vehicle_number': specific_vehicle_number, 'Time': now, 'Location': location, 'Signal_NO': signalNo, 'Vehicle': VehicleType}]
         collection.insert_many(vehicle_data)
         print("data inserted")
@@ -97,4 +95,3 @@ class dataBase:
         #     print("non time zero")
         #     print(counter)
         #     return counter
-
