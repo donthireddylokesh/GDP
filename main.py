@@ -84,7 +84,7 @@ def imageProcessing():
                     cv2.imwrite("./img/img" + str(count) + ".jpg", plate_gray)
                 # Allow only alphanumeric in the text
                 cleanString = re.sub('\W+', '', text_in).upper()
-                print(cleanString)
+                print("Extracted text after cleaning the text: ",cleanString)
                 # if (search in the database).
                 if (num.dataBase.regTag(cleanString, location, signal_No)):
                     interrupt = True
@@ -97,18 +97,19 @@ def imageProcessing():
                         guessWord = guessWord
                     else:
                         guessWord = "none"
-                    print(guessWord)
+                    print("Predicted word : ",guessWord)
                     e_Word_Not_Present = True
                     for emg_Word in emg_words:
                         if guessWord.__contains__(emg_Word.lower()):
                             interrupt = True
+                            num.dataBase.insertData("Non REGistration", location, signal_No, "Emergency")
                             #print("interrupt:", interrupt)
                             # print("interrupt:", interrupt)
                             e_Word_Not_Present = False
-                    print(e_Word_Not_Present)
-                    print(guessWord.__eq__("none"))
+                    #print(e_Word_Not_Present)
+                    #print(guessWord.__eq__("none"))
                     if guessWord.__eq__("none") & e_Word_Not_Present == True:
-                        print("data inserted")
+                        #print("data inserted")
                         num.dataBase.insertData(cleanString, location)
                         num.dataBase.insertData(cleanString, location, signal_No, "Non_Emergency")
                         interrupt = False

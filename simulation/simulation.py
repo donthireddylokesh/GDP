@@ -93,9 +93,9 @@ signal4.ChangeColor("red")
 
 currentSignals = [signal1.color, signal2.color, signal3.color, signal4.color]
 
-actual_send_Signal_time =  datetime.datetime(2023, 10, 27, 10, 16, 18)
+actual_send_Signal_time =  datetime.datetime(2023, 11, 10, 10, 16, 18)
 def signal_loop(lastDataTime = actual_send_Signal_time):
-    print("lastdatatime",lastDataTime)
+    #print("lastdatatime",lastDataTime)
     if currentSignals.index("green") == 0:
         signal1.ChangeColor("green")
         time.sleep(8)
@@ -161,9 +161,9 @@ def signal_loop(lastDataTime = actual_send_Signal_time):
             #signal_loop()
             #interupt = False
     if num.dataBase.sendSignal(lastDataTime)[1]:
-        print("lastdatatime in if ",lastDataTime)
+        #print("lastdatatime in if ",lastDataTime)
         t  = num.dataBase.sendSignal(lastDataTime)[0]
-        print("t value",t)
+        #print("t value",t)
         update_global_variable(t)
         #print(actual_send_Signal_time)
         # if (datetime.datetime.now() - t).total_seconds() >= 1:
@@ -180,11 +180,11 @@ def update_global_variable(t):
     global actual_send_Signal_time
     actual_send_Signal_time = t
     actual_send_Signal_time = actual_send_Signal_time.replace(microsecond=actual_send_Signal_time.microsecond+ 1000)
-    print("update value in global variable",actual_send_Signal_time)
+    #print("update value in global variable",actual_send_Signal_time)
 
 def loop(singnalNum,interupt):
         #loop(3,interupt)
-        print(currentSignals)
+        #print(currentSignals)
         currentGreen = currentSignals.index("green")
         if interupt == True:
             for num in range(0,currentSignals.__len__()):
@@ -193,7 +193,7 @@ def loop(singnalNum,interupt):
                 else:
                     currentSignals[num] = "red"
             print("interupt signal",currentSignals)
-            print(currentGreen)
+            #print(currentGreen)
             if currentGreen==0:
                 signal1.ChangeColor("orange")
                 time.sleep(2)

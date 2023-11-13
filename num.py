@@ -15,7 +15,7 @@ class dataBase:
         collectionE = dbE['Emergency_Vehicle']
         query = {'vehicle_number': specific_vehicle_number}
         documents = collectionE.count_documents(query)
-        print(documents)
+        #print(documents)
         if(documents==0):
             print("Not an emergency vehicle")
             return False
@@ -30,9 +30,9 @@ class dataBase:
         db = client['vehicle_log']
         collection = db['junction1']
         now = datetime.datetime.now()
-        vehicle_data = [{'Vehicle_number': specific_vehicle_number, 'Time': now, 'Location': location, 'Signal_NO': signalNo, 'Vehicle': VehicleType}]
+        vehicle_data = [{'vehicle_number': specific_vehicle_number, 'Time': now, 'Location': location, 'Signal_NO': signalNo, 'Vehicle': VehicleType}]
         collection.insert_many(vehicle_data)
-        print("data inserted")
+        #print("data inserted")
     def sendSignal(a):
 
         db = client['vehicle_log']
@@ -69,7 +69,7 @@ class dataBase:
             return last_entered_data_time, True
         else:
             last_entered_data_time = None
-            print('else database Last entered data time:', last_entered_data_time)
+            print('database Last entered data time:', last_entered_data_time)
             return now, False
         # Close the cursor and database connection
         cursor.close()
@@ -79,5 +79,5 @@ class dataBase:
         for result in results:
             print(result)
         # Print the last entered data time
-        print('Last entered data time:', last_entered_data_time)
+        #print('Last entered data time:', last_entered_data_time)
 
