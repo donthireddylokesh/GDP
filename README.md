@@ -45,9 +45,12 @@ This project is currently designed for research and development purposes. For de
 
 **Aknowledgements**
 
+* https://opencv.org/university/
+* https://amin-ahmadi.com/cascade-trainer-gui/
 * https://github.com/isha-git/GreenGo
 * https://github.com/kennethleungty/Car-Plate-Detection-OpenCV-TesseractOCR
 * https://www.youtube.com/watch?v=VanxJiUwOrQ
+
 
 
 
