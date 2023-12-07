@@ -43,4 +43,11 @@ python simulation.py
 
 This project is currently designed for research and development purposes. For deployment on real-world traffic systems, additional hardware and software infrastructure would be required, including cameras for vehicle detection and communication interfaces with traffic lights.
 
+**Aknowledgements**
+
+* https://github.com/isha-git/GreenGo
+* https://github.com/kennethleungty/Car-Plate-Detection-OpenCV-TesseractOCR
+* https://www.youtube.com/watch?v=VanxJiUwOrQ
+
+
 
